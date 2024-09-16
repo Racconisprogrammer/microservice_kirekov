@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: product-service
+          uri: lb://product-service
+          predicates:
+            - Path=/product/**
+        - id: order-service
+          uri: lb://order-service
+          predicates:
+            - Path=/orders/**
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/inventory/**
+  config:
+    import: optional:eureka-service:http://localhost:8761
+  application:
+    name: gateway-service
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['*']

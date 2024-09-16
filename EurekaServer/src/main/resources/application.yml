@@ -1,0 +1,23 @@
+server:
+  port: 8761
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Racconisprogrammer/microservice_kirekov_config.git
+          skipSslValidation: true
+          clone-on-start: true
+  application:
+    name: eureka-server
+eureka:
+  dashboard:
+    enabled: true
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['*']
